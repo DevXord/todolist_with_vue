@@ -96,8 +96,8 @@ import { defineComponent } from 'vue';
               dateEmpty_isValid= false;
             }
   
-            if(!taskEmpty_isValid && !dateIsFromPast_isValid) {
-            this.errorsEdit.push("one of the fields must be completed!")
+            if(!taskEmpty_isValid && !dateEmpty_isValid) {
+              this.errorsEdit.push("One of the fields must be completed!")
    
             }
             if(this.taskEditText != '' && this.taskEditText.length < 5){
@@ -139,7 +139,7 @@ import { defineComponent } from 'vue';
 
 
             return (
-              (taskEmpty_isValid || !dateIsFromPast_isValid) &&
+              (taskEmpty_isValid || dateEmpty_isValid) &&
               taskMinLenght_isValid && 
               dateIsFromPast_isValid &&
               dateInvalid_isValid &&

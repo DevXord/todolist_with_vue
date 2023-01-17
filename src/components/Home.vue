@@ -107,7 +107,9 @@ import axios from 'axios'
                   await axios.put(import.meta.env.VITE_APP_DATEBASE_API_URL + "Tasks/UpdateTask/",
                   {
             
-                    dataEnd: task.date.toString() != '' || task.date.toLocaleString() !=  element.dataEnd.toLocaleString() ?  new Date(task.date) : element.dataEnd,
+
+                    
+                    dataEnd: task.date.toString() != 'Invalid Date' || task.date.toString() != ''  || task.date.toLocaleString() !=  element.dataEnd.toLocaleString() ?  new Date(task.date) : element.dataEnd,
                     taskText: task.text != '' || task.text != element.taskText ? task.text : element.taskText,
                     iD_Task: element.iD_Task,
                     isDone: element.isDone
@@ -121,8 +123,11 @@ import axios from 'axios'
                 await this.reloadTasks();
               }
               else{
-                element.dataEnd = task.date.toString() != '' || task.date.toLocaleString() !=  element.dataEnd.toLocaleString() ? new Date(task.date) : element.dataEnd;
-                element.taskText = task.text != '' || task.text != element.taskText ? task.text : element.taskText;
+
+                if(task.date.toString() != 'Invalid Date')
+                  element.dataEnd = new Date(task.date);
+                if(task.text.toString() != '')
+                  element.taskText = task.text;
               }
 
           },
